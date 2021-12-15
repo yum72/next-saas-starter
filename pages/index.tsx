@@ -52,7 +52,7 @@ export default function Homepage ({ posts }: InferGetStaticPropsType<typeof getS
         </WhiteBackgroundContainer>
         <Container>
           <LogoWrapper>
-            <Logo />
+            <Logo theme={'dark'} />
           </LogoWrapper>
         </Container>
         {/* <DarkerBackgroundContainer>

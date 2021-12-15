@@ -19,7 +19,7 @@ type NavbarProps = { items: NavItems }
 type ScrollingDirections = 'up' | 'down' | 'none'
 type NavbarContainerProps = { hidden: boolean; transparent: boolean }
 
-export default function Navbar ({ items, setTheme, theme }: NavbarProps) {
+export default function Navbar ({ items, setTheme, theme }) {
   const router = useRouter()
   const { toggle } = Drawer.useDrawer()
   const [scrollingDirection, setScrollingDirection] = useState<ScrollingDirections>('none')
