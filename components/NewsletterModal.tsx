@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import MailchimpSubscribe, { DefaultFormFields } from 'react-mailchimp-subscribe';
-import styled from 'styled-components';
-import { EnvVars } from 'env';
-import useEscClose from 'hooks/useEscKey';
-import { media } from 'utils/media';
-import Button from './Button';
-import CloseIcon from './CloseIcon';
-import Container from './Container';
-import Input from './Input';
-import MailSentState from './MailSentState';
-import Overlay from './Overlay';
+import React, { useState } from 'react'
+import MailchimpSubscribe, { DefaultFormFields } from 'react-mailchimp-subscribe'
+import styled from 'styled-components'
+import { EnvVars } from 'env'
+import useEscClose from 'hooks/useEscKey'
+import { media } from 'utils/media'
+import Button from './Button'
+import CloseIcon from './CloseIcon'
+import Container from './Container'
+import Input from './Input'
+import MailSentState from './MailSentState'
+import Overlay from './Overlay'
 
 export interface NewsletterModalProps {
-  onClose: () => void;
+  onClose: () => void
 }
 
-export default function NewsletterModal({ onClose }: NewsletterModalProps) {
-  const [email, setEmail] = useState('');
+export default function NewsletterModal ({ onClose }: NewsletterModalProps) {
+  const [email, setEmail] = useState('')
 
-  useEscClose({ onClose });
+  useEscClose({ onClose })
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>, enrollNewsletter: (props: DefaultFormFields) => void) {
-    event.preventDefault();
-    console.log({ email });
+  function onSubmit (event: React.FormEvent<HTMLFormElement>, enrollNewsletter: (props: DefaultFormFields) => void) {
+    event.preventDefault()
+    console.log({ email })
     if (email) {
-      enrollNewsletter({ EMAIL: email });
+      enrollNewsletter({ EMAIL: email })
     }
   }
 
@@ -32,7 +32,7 @@ export default function NewsletterModal({ onClose }: NewsletterModalProps) {
     <MailchimpSubscribe
       url={EnvVars.MAILCHIMP_SUBSCRIBE_URL}
       render={({ subscribe, status, message }) => {
-        const hasSignedUp = status === 'success';
+        const hasSignedUp = status === 'success'
         return (
           <Overlay>
             <Container>
@@ -43,15 +43,15 @@ export default function NewsletterModal({ onClose }: NewsletterModalProps) {
                 {hasSignedUp && <MailSentState />}
                 {!hasSignedUp && (
                   <>
-                    <Title>Are you ready to enroll to the best newsletter ever?</Title>
+                    <Title>Early access and launch updates</Title>
                     <Row>
                       <CustomInput
                         value={email}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                        placeholder="Enter your email..."
+                        placeholder='Enter your email...'
                         required
                       />
-                      <CustomButton as="button" type="submit" disabled={hasSignedUp}>
+                      <CustomButton as='button' type='submit' disabled={hasSignedUp}>
                         Submit
                       </CustomButton>
                     </Row>
@@ -61,10 +61,10 @@ export default function NewsletterModal({ onClose }: NewsletterModalProps) {
               </Card>
             </Container>
           </Overlay>
-        );
+        )
       }}
     />
-  );
+  )
 }
 
 const Card = styled.form`
@@ -82,7 +82,7 @@ const Card = styled.form`
   ${media('<=tablet')} {
     padding: 7.5rem 2.5rem;
   }
-`;
+`
 
 const CloseIconContainer = styled.div`
   position: absolute;
@@ -93,7 +93,7 @@ const CloseIconContainer = styled.div`
     cursor: pointer;
     width: 2rem;
   }
-`;
+`
 
 const Title = styled.div`
   font-size: 3.2rem;
@@ -106,14 +106,14 @@ const Title = styled.div`
   ${media('<=tablet')} {
     font-size: 2.6rem;
   }
-`;
+`
 
 const ErrorMessage = styled.p`
   color: rgb(var(--errorColor));
   font-size: 1.5rem;
   margin: 1rem 0;
   text-align: center;
-`;
+`
 
 const Row = styled.div`
   display: flex;
@@ -126,7 +126,7 @@ const Row = styled.div`
   ${media('<=tablet')} {
     flex-direction: column;
   }
-`;
+`
 
 const CustomButton = styled(Button)`
   height: 100%;
@@ -139,7 +139,7 @@ const CustomButton = styled(Button)`
     margin-left: 0;
     margin-top: 1rem;
   }
-`;
+`
 
 const CustomInput = styled(Input)`
   width: 60%;
@@ -147,4 +147,4 @@ const CustomInput = styled(Input)`
   ${media('<=tablet')} {
     width: 100%;
   }
-`;
+`

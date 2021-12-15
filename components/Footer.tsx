@@ -1,13 +1,13 @@
-import NextLink from 'next/link';
-import { FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
-import styled from 'styled-components';
-import Container from 'components/Container';
-import { media } from 'utils/media';
+import NextLink from 'next/link'
+import { FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share'
+import styled from 'styled-components'
+import Container from 'components/Container'
+import { media } from 'utils/media'
 
-type SingleFooterListItem = { title: string; href: string };
-type FooterListItems = SingleFooterListItem[];
-type SingleFooterList = { title: string; items: FooterListItems };
-type FooterItems = SingleFooterList[];
+type SingleFooterListItem = { title: string; href: string }
+type FooterListItems = SingleFooterListItem[]
+type SingleFooterList = { title: string; items: FooterListItems }
+type FooterItems = SingleFooterList[]
 
 const footerItems: FooterItems = [
   {
@@ -44,84 +44,85 @@ const footerItems: FooterItems = [
       { title: 'And something else2', href: '/and-something-else2' },
     ],
   },
-];
+]
 
-export default function Footer() {
+export default function Footer () {
   return (
     <FooterWrapper>
       <Container>
-        <ListContainer>
+        {/* <ListContainer>
           {footerItems.map((singleItem) => (
             <FooterList key={singleItem.title} {...singleItem} />
           ))}
-        </ListContainer>
+        </ListContainer> */}
         <BottomBar>
-          <ShareBar>
-            <NextLink href="https://www.twitter.com/my-saas-startup" passHref>
+          {/* <ShareBar>
+            <NextLink href='https://www.twitter.com/my-saas-startup' passHref>
               <a>
                 <TwitterIcon size={50} round={true} />
               </a>
             </NextLink>
 
-            <NextLink href="https://www.facebook.com/my-saas-startup" passHref>
+            <NextLink href='https://www.facebook.com/my-saas-startup' passHref>
               <a>
                 <FacebookIcon size={50} round={true} />
               </a>
             </NextLink>
 
-            <NextLink href="https://www.linkedin.com/my-saas-startup" passHref>
+            <NextLink href='https://www.linkedin.com/my-saas-startup' passHref>
               <a>
                 <LinkedinIcon size={50} round={true} />
               </a>
             </NextLink>
-          </ShareBar>
-          <Copyright>&copy; Copyright 2021 My Saas Startup</Copyright>
+          </ShareBar> */}
+          <Copyright>&copy; Copyright 2021 Bountiful</Copyright>
         </BottomBar>
       </Container>
     </FooterWrapper>
-  );
+  )
 }
 
-function FooterList({ title, items }: SingleFooterList) {
+function FooterList ({ title, items }: SingleFooterList) {
   return (
     <ListWrapper>
       <ListHeader>{title}</ListHeader>
-      {items.map((singleItem) => (
+      {items.map(singleItem => (
         <ListItem key={singleItem.href} {...singleItem} />
       ))}
     </ListWrapper>
-  );
+  )
 }
 
-function ListItem({ title, href }: SingleFooterListItem) {
+function ListItem ({ title, href }: SingleFooterListItem) {
   return (
     <ListItemWrapper>
       <NextLink href={href} passHref>
         <a>{title}</a>
       </NextLink>
     </ListItemWrapper>
-  );
+  )
 }
 
 const FooterWrapper = styled.div`
-  padding-top: 10rem;
-  padding-bottom: 4rem;
-  background: rgb(var(--secondary));
+  // padding-top: 1rem;
+  // padding-bottom: 1rem;
+  background: #1d43ac;
   color: rgb(var(--textSecondary));
-`;
+  height: 36px;
+`
 
 const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-`;
+`
 
 const ListHeader = styled.p`
   font-weight: bold;
   font-size: 2.25rem;
   margin-bottom: 2.5rem;
-`;
+`
 
 const ListWrapper = styled.div`
   display: flex;
@@ -142,7 +143,7 @@ const ListWrapper = styled.div`
     flex: 0 100%;
     margin-right: 0rem;
   }
-`;
+`
 
 const ListItemWrapper = styled.p`
   font-size: 1.6rem;
@@ -151,26 +152,28 @@ const ListItemWrapper = styled.p`
     text-decoration: none;
     color: rgba(var(--textSecondary), 0.75);
   }
-`;
+`
 
 const ShareBar = styled.div`
   & > *:not(:first-child) {
     margin-left: 1rem;
   }
-`;
+`
 
 const Copyright = styled.p`
-  font-size: 1.5rem;
-  margin-top: 0.5rem;
-`;
+  ont-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  margin-top: 7px;
+`
 
 const BottomBar = styled.div`
-  margin-top: 6rem;
+  margin-top: 5rem;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
 
   ${media('<=tablet')} {
     flex-direction: column;
   }
-`;
+`

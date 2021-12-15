@@ -1,41 +1,47 @@
-import NextLink from 'next/link';
-import styled from 'styled-components';
-import Button from 'components/Button';
-import ButtonGroup from 'components/ButtonGroup';
-import Container from 'components/Container';
-import HeroIllustration from 'components/HeroIllustation';
-import OverTitle from 'components/OverTitle';
-import { useNewsletterModalContext } from 'contexts/newsletter-modal.context';
-import { media } from 'utils/media';
+import NextLink from 'next/link'
+import styled from 'styled-components'
+import Button from 'components/Button'
+import ButtonGroup from 'components/ButtonGroup'
+import Container from 'components/Container'
+import HeroIllustration from 'components/HeroIllustation'
+import OverTitle from 'components/OverTitle'
+import { useNewsletterModalContext } from 'contexts/newsletter-modal.context'
+import { media } from 'utils/media'
 
-export default function Hero() {
-  const { setIsModalOpened } = useNewsletterModalContext();
+export default function Hero () {
+  const { setIsModalOpened } = useNewsletterModalContext()
 
   return (
     <HeroWrapper>
       <Contents>
-        <CustomOverTitle>the coolest, saas product you have ever seen</CustomOverTitle>
-        <Heading>Make your life easier with our SaaS</Heading>
+        <CustomOverTitle>Coming Soon</CustomOverTitle>
+        <Heading>Join our community of hard science researchers, grad students and entrepreneurs looking to solve global problems</Heading>
         <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, tempora qui. Explicabo voluptate iure ipsum molestias
-          repudiandae perspiciatis nostrum praesentium, unde pariatur tempora magni rem. Necessitatibus facilis obcaecati ratione.
+          <ul>
+            <li>Collaborate on problem statements direct from industry</li>
+            <li>Pitch your inventions/research </li>
+            <li>Attend our events and symposia</li>
+            <li>Find job and fellowship opportunities</li>
+          </ul>
         </Description>
+
+        <SignUpText>Sign up for early access and launch updates.</SignUpText>
         <CustomButtonGroup>
           <Button onClick={() => setIsModalOpened(true)}>
             Subscribe to the newsletter <span>&rarr;</span>
           </Button>
-          <NextLink href="#whitepaper" passHref>
+          {/* <NextLink href='#whitepaper' passHref>
             <Button transparent>
               Features <span>&rarr;</span>
             </Button>
-          </NextLink>
+          </NextLink> */}
         </CustomButtonGroup>
       </Contents>
       <ImageContainer>
         <HeroIllustration />
       </ImageContainer>
     </HeroWrapper>
-  );
+  )
 }
 
 const HeroWrapper = styled(Container)`
@@ -47,7 +53,7 @@ const HeroWrapper = styled(Container)`
     flex-direction: column;
     align-items: center;
   }
-`;
+`
 
 const Contents = styled.div`
   flex: 1;
@@ -56,11 +62,11 @@ const Contents = styled.div`
   ${media('<=desktop')} {
     max-width: 100%;
   }
-`;
+`
 
 const CustomButtonGroup = styled(ButtonGroup)`
-  margin-top: 4rem;
-`;
+  margin-top: 3rem;
+`
 
 const ImageContainer = styled.div`
   display: flex;
@@ -79,24 +85,37 @@ const ImageContainer = styled.div`
       max-width: 80%;
     }
   }
-`;
+`
 
-const Description = styled.p`
-  font-size: 1.8rem;
+const Description = styled.div`
+  font-size: 1.9rem;
   opacity: 0.8;
   line-height: 1.6;
 
   ${media('<=desktop')} {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    opacity: 0.8;
+    line-height: 1.6;
   }
-`;
+`
+const SignUpText = styled.p`
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 40px;
+  opacity: 0.8;
+
+  ${media('<=desktop')} {
+    font-size: 2rem;
+  }
+`
 
 const CustomOverTitle = styled(OverTitle)`
   margin-bottom: 2rem;
-`;
+`
 
 const Heading = styled.h1`
-  font-size: 7.2rem;
+  font-size: 4rem;
   font-weight: bold;
   line-height: 1.1;
   margin-bottom: 4rem;
@@ -106,4 +125,4 @@ const Heading = styled.h1`
     font-size: 4.6rem;
     margin-bottom: 2rem;
   }
-`;
+`
