@@ -78,7 +78,7 @@ const WhiteBackgroundContainer = styled.div`
   background: rgb(var(--secondBackground));
 
   & > :last-child {
-    padding-bottom: 14.1rem;
+    padding-bottom: 5.1rem;
   }
 
   & > *:not(:first-child) {
