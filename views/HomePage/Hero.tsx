@@ -14,8 +14,10 @@ export default function Hero () {
   return (
     <HeroWrapper>
       <Contents>
-        <CustomOverTitle>Coming Soon</CustomOverTitle>
-        <Heading>Join our community of hard science researchers, grad students and entrepreneurs looking to solve global problems</Heading>
+        {/* <CustomOverTitle>Coming Soon</CustomOverTitle> */}
+        <Heading>
+          Join our community of hard science researchers, grad students and entrepreneurs building solutions to global problems
+        </Heading>
         <Description>
           <ul>
             <li>Collaborate on problem statements direct from industry</li>
@@ -25,10 +27,10 @@ export default function Hero () {
           </ul>
         </Description>
 
-        <SignUpText>Sign up for early access and launch updates.</SignUpText>
+        <SignUpText>Sign up to get started</SignUpText>
         <CustomButtonGroup>
           <Button onClick={() => setIsModalOpened(true)}>
-            Subscribe to the newsletter <span>&rarr;</span>
+            JOIN THE CREW <span>&rarr;</span>
           </Button>
           {/* <NextLink href='#whitepaper' passHref>
             <Button transparent>

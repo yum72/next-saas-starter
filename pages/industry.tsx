@@ -27,7 +27,7 @@ const navItems: NavItems = [
   { title: 'Sign up', href: '/sign-up', outlined: true },
 ]
 
-function MyApp ({ Component, pageProps }: AppProps) {
+export default function Industry ({ Component, pageProps }: AppProps) {
   const standaloneMarkup = <Component {...pageProps} />
   const [theme, setTheme] = useState('light')
 
@@ -92,5 +92,3 @@ function Modals () {
   }
   return <NewsletterModal onClose={() => setIsModalOpened(false)} />
 }
-
-export default MyApp

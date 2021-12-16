@@ -12,8 +12,6 @@ import Hero from 'views/HomePage/Hero'
 import Partners from 'views/HomePage/Partners'
 import ScrollableBlogPosts from 'views/HomePage/ScrollableBlogPosts'
 import Testimonials from 'views/HomePage/Testimonials'
-import Logo from '../components/Logo'
-import Container from 'components/Container'
 
 export default function Homepage ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -50,11 +48,6 @@ export default function Homepage ({ posts }: InferGetStaticPropsType<typeof getS
             </ul>
           </BasicSection> */}
         </WhiteBackgroundContainer>
-        <Container>
-          <LogoWrapper>
-            <Logo theme={'dark'} />
-          </LogoWrapper>
-        </Container>
         {/* <DarkerBackgroundContainer>
           <Cta />
           <FeaturesGallery />
@@ -66,18 +59,6 @@ export default function Homepage ({ posts }: InferGetStaticPropsType<typeof getS
     </>
   )
 }
-
-const LogoWrapper = styled.div`
-  display: flex;
-  margin-right: auto;
-  text-decoration: none;
-  margin-top: 5rem;
-
-  color: rgb(var(--logoColor));
-  & > *:not(:first-child) {
-    margin-top: 15rem;
-  }
-`
 
 const HomepageWrapper = styled.div`
   & > :last-child {
@@ -97,7 +78,7 @@ const WhiteBackgroundContainer = styled.div`
   background: rgb(var(--secondBackground));
 
   & > :last-child {
-    padding-bottom: 10rem;
+    padding-bottom: 14.1rem;
   }
 
   & > *:not(:first-child) {
