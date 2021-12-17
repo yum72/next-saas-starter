@@ -86,11 +86,11 @@ function Providers<T> ({ children }: PropsWithChildren<T>) {
 }
 
 function Modals () {
-  const { isModalOpened, setIsModalOpened } = useNewsletterModalContext()
+  const { isModalOpened, setIsModalOpened, tags } = useNewsletterModalContext()
   if (!isModalOpened) {
     return null
   }
-  return <NewsletterModal onClose={() => setIsModalOpened(false)} />
+  return <NewsletterModal onClose={() => setIsModalOpened(false)} tags={tags} />
 }
 
 export default MyApp

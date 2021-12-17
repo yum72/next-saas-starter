@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import MailchimpSubscribe, { DefaultFormFields } from 'react-mailchimp-subscribe'
 import styled from 'styled-components'
 import { EnvVars } from 'env'
 import useEscClose from 'hooks/useEscKey'
@@ -15,55 +14,76 @@ export interface NewsletterModalProps {
   onClose: () => void
 }
 
-export default function NewsletterModal ({ onClose }: NewsletterModalProps) {
+export default function NewsletterModal ({ onClose, tags }) {
   const [email, setEmail] = useState('')
+  const [hasSignedUp, setHasSignedUp] = useState(false)
+  const [error, setError] = useState(null)
 
   useEscClose({ onClose })
 
-  function onSubmit (event: React.FormEvent<HTMLFormElement>, enrollNewsletter: (props: DefaultFormFields) => void) {
+  function onSubmit (event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log({ email })
+    console.log({ email, tags })
     if (email) {
-      enrollNewsletter({ EMAIL: email })
+      let data = {
+        email,
+        form_id: '2852208',
+        tags: tags,
+      }
+
+      function handleErrors (response) {
+        if (!response.ok) {
+          setError('An error occurred')
+          throw Error(response.statusText)
+        }
+        return response
+      }
+
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(handleErrors)
+        .then(response => {
+          console.log('ok', response)
+          setHasSignedUp(true)
+        })
+        .catch(error => console.log(error))
     }
   }
 
   return (
-    <MailchimpSubscribe
-      url={EnvVars.MAILCHIMP_SUBSCRIBE_URL}
-      render={({ subscribe, status, message }) => {
-        const hasSignedUp = status === 'success'
-        return (
-          <Overlay>
-            <Container>
-              <Card onSubmit={(event: React.FormEvent<HTMLFormElement>) => onSubmit(event, subscribe)}>
-                <CloseIconContainer>
-                  <CloseIcon onClick={onClose} />
-                </CloseIconContainer>
-                {hasSignedUp && <MailSentState />}
-                {!hasSignedUp && (
-                  <>
-                    <Title>Let's get started</Title>
-                    <Row>
-                      <CustomInput
-                        value={email}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                        placeholder='Enter your email...'
-                        required
-                      />
-                      <CustomButton as='button' type='submit' disabled={hasSignedUp}>
-                        Submit
-                      </CustomButton>
-                    </Row>
-                    {message && <ErrorMessage dangerouslySetInnerHTML={{ __html: message as string }} />}
-                  </>
-                )}
-              </Card>
-            </Container>
-          </Overlay>
-        )
-      }}
-    />
+    <Overlay>
+      <Container>
+        <Card onSubmit={(event: React.FormEvent<HTMLFormElement>) => onSubmit(event)}>
+          <CloseIconContainer>
+            <CloseIcon onClick={onClose} />
+          </CloseIconContainer>
+          {hasSignedUp && <MailSentState />}
+          {!hasSignedUp && (
+            <>
+              <Title>Let's get started</Title>
+              <Row>
+                <CustomInput
+                  value={email}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                  placeholder='Enter your email...'
+                  required
+                />
+                <CustomButton as='button' type='submit' disabled={hasSignedUp}>
+                  Submit
+                </CustomButton>
+              </Row>
+              {error && <ErrorMessage dangerouslySetInnerHTML={{ __html: error as string }} />}
+            </>
+          )}
+        </Card>
+      </Container>
+    </Overlay>
   )
 }
 

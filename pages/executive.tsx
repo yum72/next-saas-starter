@@ -12,7 +12,7 @@ import { useNewsletterModalContext } from 'contexts/newsletter-modal.context'
 import { media } from 'utils/media'
 
 export default function Industry ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { setIsModalOpened } = useNewsletterModalContext()
+  const { setIsModalOpened, setTags } = useNewsletterModalContext()
   return (
     <>
       <Head>
@@ -38,7 +38,12 @@ export default function Industry ({ posts }: InferGetStaticPropsType<typeof getS
               </Description>
 
               <CustomButtonGroup>
-                <Button onClick={() => setIsModalOpened(true)}>
+                <Button
+                  onClick={() => {
+                    setIsModalOpened(true)
+                    setTags(['2814629'])
+                  }}
+                >
                   JOIN THE CREW <span>&rarr;</span>
                 </Button>
               </CustomButtonGroup>
@@ -157,7 +162,7 @@ const Heading = styled.h1`
   letter-spacing: -0.03em;
 
   ${media('<=tablet')} {
-    font-size: 4.6rem;
+    font-size: 3.8rem;
     margin-bottom: 2rem;
   }
 `

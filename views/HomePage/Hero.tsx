@@ -9,7 +9,7 @@ import { useNewsletterModalContext } from 'contexts/newsletter-modal.context'
 import { media } from 'utils/media'
 
 export default function Hero () {
-  const { setIsModalOpened } = useNewsletterModalContext()
+  const { setIsModalOpened, setTags } = useNewsletterModalContext()
 
   return (
     <HeroWrapper>
@@ -29,7 +29,12 @@ export default function Hero () {
 
         <SignUpText>Sign up to get started</SignUpText>
         <CustomButtonGroup>
-          <Button onClick={() => setIsModalOpened(true)}>
+          <Button
+            onClick={() => {
+              setIsModalOpened(true)
+              setTags(['2814576'])
+            }}
+          >
             JOIN THE CREW <span>&rarr;</span>
           </Button>
           {/* <NextLink href='#whitepaper' passHref>
@@ -124,7 +129,7 @@ const Heading = styled.h1`
   letter-spacing: -0.03em;
 
   ${media('<=tablet')} {
-    font-size: 4.6rem;
+    font-size: 3.8rem;
     margin-bottom: 2rem;
   }
 `
