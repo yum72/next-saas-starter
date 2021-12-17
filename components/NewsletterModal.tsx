@@ -31,14 +31,6 @@ export default function NewsletterModal ({ onClose, tags }) {
         tags: tags,
       }
 
-      function handleErrors (response) {
-        if (!response.ok) {
-          setError('An error occurred')
-          throw Error(response.statusText)
-        }
-        return response
-      }
-
       fetch('/api/subscribe', {
         method: 'POST',
         headers: {
@@ -47,10 +39,14 @@ export default function NewsletterModal ({ onClose, tags }) {
         },
         body: JSON.stringify(data),
       })
-        .then(handleErrors)
         .then(response => {
-          console.log('ok', response)
-          setHasSignedUp(true)
+          if (!response.ok) {
+            setError('An error occurred')
+            throw Error(response.statusText)
+          } else {
+            console.log('ok', response)
+            setHasSignedUp(true)
+          }
         })
         .catch(error => console.log(error))
     }
