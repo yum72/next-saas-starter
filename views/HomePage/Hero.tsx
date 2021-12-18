@@ -31,7 +31,9 @@ export default function Hero () {
         <CustomButtonGroup>
           <Button
             onClick={() => {
+              // @ts-expect-error
               setIsModalOpened(true)
+              // @ts-expect-error
               setTags(['2814576'])
             }}
           >

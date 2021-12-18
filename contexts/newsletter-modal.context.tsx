@@ -1,4 +1,4 @@
-import React, { Dispatch, PropsWithChildren, SetStateAction, useContext, useState } from 'react'
+import React, { PropsWithChildren, useContext, useState } from 'react'
 
 export const NewsletterModalContext = React.createContext(null)
 
@@ -8,6 +8,7 @@ export function NewsletterModalContextProvider<T> ({ children }: PropsWithChildr
 
   return (
     <NewsletterModalContext.Provider
+      // @ts-expect-error
       value={{
         isModalOpened,
         setIsModalOpened,

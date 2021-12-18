@@ -90,6 +90,7 @@ function Modals () {
   if (!isModalOpened) {
     return null
   }
+  // @ts-expect-error
   return <NewsletterModal onClose={() => setIsModalOpened(false)} tags={tags} />
 }
 
