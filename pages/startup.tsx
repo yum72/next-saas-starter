@@ -39,7 +39,9 @@ export default function Industry ({ posts }: InferGetStaticPropsType<typeof getS
               <CustomButtonGroup>
                 <Button
                   onClick={() => {
+                    // @ts-expect-error
                     setIsModalOpened(true)
+                    // @ts-expect-error
                     setTags(['2814616'])
                   }}
                 >
