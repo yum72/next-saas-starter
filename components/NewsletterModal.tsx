@@ -17,7 +17,7 @@ export interface NewsletterModalProps {
 export default function NewsletterModal ({ onClose, tags }) {
   const [email, setEmail] = useState('')
   const [hasSignedUp, setHasSignedUp] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
 
   useEscClose({ onClose })
 
@@ -74,7 +74,7 @@ export default function NewsletterModal ({ onClose, tags }) {
                   Submit
                 </CustomButton>
               </Row>
-              {error && <ErrorMessage dangerouslySetInnerHTML={{ __html: error as string }} />}
+              {error && error !== '' && <ErrorMessage dangerouslySetInnerHTML={{ __html: error as string }} />}
             </>
           )}
         </Card>
